@@ -1,0 +1,106 @@
+@red: #E02222;
+@gray: #C1C4C7;
+
+#tour {
+
+	.cursor-pointer {
+		cursor : pointer;
+	}
+
+	top                : 0;
+	left               : 0;
+	border-color       : rgba(0, 0, 0, .5);
+	border-style       : solid;
+	box-sizing         : content-box;
+	position           : absolute;
+	z-index            : 999999999;
+	-webkit-transition : all .5s ease;
+
+	#tour-close {
+		.cursor-pointer;
+
+		position : absolute;
+		right    : 0;
+		margin   : 10px;
+		color    : @red;
+	}
+
+	#tour-next {
+		.cursor-pointer;
+
+		font-size : 25px;
+		color     : @red;
+		margin    : auto -12px -3px;
+	}
+
+	#tour-prev {
+		.cursor-pointer;
+
+		font-size : 18px;
+		color     : @gray;
+	}
+
+	#tour-description {
+		padding       : 10px 20px;
+		position      : absolute;
+		top           : 100%;
+		background    : white;
+		border-radius : 6px;
+        box-sizing: content-box;
+		box-shadow    : 0 0 13px gray;
+
+		section {
+			margin : 20px 0
+		}
+
+		footer {
+			text-align : center;
+
+			.n-red {
+				&.n-small {
+					padding   : 2px 0;
+					min-width : 80px;
+				}
+			}
+		}
+
+		&.bottom {
+
+			margin-top : 19px;
+
+			&:before {
+				content       : '';
+				position      : absolute;
+				left          : 50%;
+				height        : 20px;
+				width         : 20px;
+				background    : none;
+				top           : -19px;
+				z-index       : 99999999999;
+				border-right  : 10px solid transparent;
+				border-left   : 10px solid transparent;
+				border-top    : none;
+				border-bottom : 10px solid white;
+			}
+		}
+
+		&.top {
+
+			&:before {
+				content       : '';
+				position      : absolute;
+				left          : 47%;
+				height        : 20px;
+				width         : 20px;
+				background    : none;
+				top           : 99%;
+				z-index       : 99999999999;
+				border-right  : 10px solid transparent;
+				border-left   : 10px solid transparent;
+				border-bottom : none;
+				border-top    : 10px solid white;
+			}
+		}
+
+	}
+}
