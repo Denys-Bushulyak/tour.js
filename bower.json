@@ -1,0 +1,33 @@
+{
+  "name": "tour.js",
+  "main": "tour.js",
+  "version": "0.0.0",
+  "description": "Step by step user guide in tour manner.",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "keywords": [
+    "tour",
+    "wizard",
+    "step-by-step",
+    "highlight"
+  ],
+  "authors": [
+    "Denys Bushulyak"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chain.js": "~1.0.0"
+  }
+}
