@@ -1,7 +1,6 @@
 {
   "name": "tour.js",
   "main": "tour.js",
-  "version": "0.0.0",
   "description": "Step by step user guide in tour manner.",
   "moduleType": [
     "amd",
