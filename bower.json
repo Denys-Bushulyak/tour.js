@@ -30,6 +30,7 @@
     "chain.js": "~1.0.0",
     "jquery": ">=2.1.1",
     "fontawesome": "~4.2.0",
-    "mustache.js": "~0.8.2"
+    "mustache.js": "~0.8.2",
+    "requirejs": "~2.1.15"
   }
 }

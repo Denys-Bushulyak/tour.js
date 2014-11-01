@@ -1,0 +1,14 @@
+<div id='tour'>
+    <div id='tour-description'>
+        <header>
+            <h4 id='tour-title'>{{title}}</h4>
+            <span id='tour-close' class='tour-close glyphicon glyphicon-remove-sign'>x</span>
+        </header>
+        <section id='tour-content'>{{content}}</section>
+        <footer>
+            <span id='tour-prev' class='glyphicon glyphicon-circle-arrow-left pull-left'><-</span>
+            <button class='n-btn n-red n-small tour-close'>end tour</button>
+            <span class='glyphicon glyphicon-circle-arrow-right pull-right' id='tour-next'>-></span>
+        </footer>
+    </div>
+</div>
