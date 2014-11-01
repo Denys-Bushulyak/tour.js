@@ -74,13 +74,13 @@ function Tour(options) {
             return;
         }
 
-        var tour = localStorage.getItem('tour') || '{"shown":[]}';
-        tour = JSON.parse(tour);
+        var temp = localStorage.getItem('tour') || '{"shown":[]}';
+        temp = JSON.parse(temp);
 
-        if (0 > tour.shown.indexOf(ApplicationID)) {
-            tour.shown.push(ApplicationID);
+        if (0 > temp.shown.indexOf(ApplicationID)) {
+            temp.shown.push(ApplicationID);
         }
-        localStorage.setItem('tour', JSON.stringify(tour));
+        localStorage.setItem('tour', JSON.stringify(temp));
     }
 
     function isShowed() {
@@ -139,6 +139,7 @@ function Tour(options) {
         size.width = (size.width) ? size.width : target.width;
         size.height = (size.height) ? size.height : target.height;
 
+        //TODO Fix. This is wrong: "241px -10px 4487px -10px". Must be:"241px 10px 4487px 10px"
         var border = (target.top - correction.top) + "px " + (document.body.offsetWidth - target.width - target.left - correction.right) + "px " + (document.body.scrollHeight - target.top - target.height - correction.bottom) + "px " + (target.left - correction.left) + "px";
 
         style.width = size.width + correction.left + correction.right;
