@@ -1,6 +1,6 @@
 tour.js
 =======
-
+Step by step user guide in tour manner.
 #step#
 ```javascript
 {
