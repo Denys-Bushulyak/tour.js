@@ -1,0 +1,31 @@
+{
+	"name"       : "chain.js",
+	"main"       : "chain.js",
+	"description": "Function wrap a array into a chain.",
+	"moduleType" : [
+		"amd",
+		"es6",
+		"globals",
+		"node",
+		"yui"
+	],
+	"keywords"   : [
+		"[\"chain\"",
+		"\"circle\"",
+		"\"loop\"",
+		"\"array\"]"
+	],
+	"authors"    : [
+		"Denys Bushulyak"
+	],
+	"license"    : "MIT",
+	"homepage"   : "https://github.com/Denys-Bushulyak/chain.js",
+	"ignore"     : [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests",
+		"README.md"
+	]
+}
