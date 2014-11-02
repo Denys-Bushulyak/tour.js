@@ -134,7 +134,6 @@ function Tour(options) {
             clear();
         });
 
-
         correction.top = (correction.top || 0);
         correction.bottom = (correction.bottom || 0);
         correction.right = (correction.right || 0);
