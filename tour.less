@@ -1,99 +1,184 @@
-@red: #E02222;
-@gray: #C1C4C7;
+@red: #e02222;
+@gray: #c1c4c7;
 
-#tour {
+#tour-wrap {
+  position: absolute;
+  z-index: 999999999;
+  top: 0;
+  left: 0;
+  box-sizing: content-box;
+  height: 100%;
+  width: 100%;
 
-	.cursor-pointer {
-		cursor : pointer;
-	}
+  #tour {
+    position: absolute; //Possible relative be good
 
-	top                : 0;
-	left               : 0;
-	border-color       : rgba(0, 0, 0, .5);
-	border-style       : solid;
-	box-sizing         : content-box;
-	position           : absolute;
-	z-index            : 999999999;
-	-webkit-transition : all .5s ease;
+    top: 0;
+    left: 0;
 
-	#tour-close {
-		.cursor-pointer;
+    box-sizing: content-box;
 
-		position : absolute;
-		right    : 0;
-		margin   : 10px;
-		color    : @red;
-	}
+    -webkit-transition: all .5s ease;
 
-	#tour-next {
-		.cursor-pointer;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, .5);
+  }
 
-		font-size : 25px;
-		color     : @red;
-		margin    : auto -12px -3px;
-	}
+  #tour-description {
+    position: absolute;
+    top: 100%;
 
-	#tour-prev {
-		.cursor-pointer;
+    box-sizing: content-box;
+    padding: 10px 20px;
 
-		font-size : 18px;
-		color     : @gray;
-	}
+    border-radius: 6px;
+    background: white;
+    box-shadow: 0 0 13px gray;
 
-	#tour-description {
-		padding       : 10px 20px;
-		position      : absolute;
-		top           : 100%;
-		background    : white;
-		border-radius : 6px;
-        box-sizing: content-box;
-		box-shadow    : 0 0 13px gray;
+    .cursor-pointer {
+      cursor: pointer;
+      text-decoration: none;
+    }
 
-		section {
-			margin : 20px 0
-		}
+    #tour-close {
+      position: absolute;
+      top: 0;
+      right: 0;
 
-		footer {
-			text-align : center;
-		}
+      margin: 10px;
 
-		&.bottom {
+      color: @red;
 
-			margin-top : 19px;
+      .cursor-pointer;
+    }
 
-			&:before {
-				content       : '';
-				position      : absolute;
-				left          : 50%;
-				height        : 20px;
-				width         : 20px;
-				background    : none;
-				top           : -19px;
-				z-index       : 99999999999;
-				border-right  : 10px solid transparent;
-				border-left   : 10px solid transparent;
-				border-top    : none;
-				border-bottom : 10px solid white;
-			}
-		}
+    #tour-next {
+      font-size: 25px;
 
-		&.top {
+      position: absolute;
+      right: 0;
+      bottom: 0;
 
-			&:before {
-				content       : '';
-				position      : absolute;
-				left          : 47%;
-				height        : 20px;
-				width         : 20px;
-				background    : none;
-				top           : 99%;
-				z-index       : 99999999999;
-				border-right  : 10px solid transparent;
-				border-left   : 10px solid transparent;
-				border-bottom : none;
-				border-top    : 10px solid white;
-			}
-		}
+      color: @red;
 
-	}
+      .cursor-pointer;
+    }
+
+    #tour-prev {
+      font-size: 25px;
+
+      position: absolute;
+      left: 0;
+      bottom: 0;
+
+      color: @gray;
+
+      .cursor-pointer;
+    }
+
+    section {
+      margin: 20px 0;
+    }
+
+    footer {
+      text-align: center;
+
+      nav {
+        a {
+          text-decoration: none;
+        }
+
+      }
+    }
+
+    &.bottom {
+      margin-top: 19px;
+
+      &:before {
+        position: absolute;
+        z-index: 99999999999;
+        top: -19px;
+        left: 43%;
+
+        width: 20px;
+        height: 20px;
+
+        content: '';
+
+        border-top: none;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid white;
+        border-left: 10px solid transparent;
+        background: none;
+      }
+    }
+
+    &.top {
+      &:before {
+        position: absolute;
+        z-index: 99999999999;
+        top: 99%;
+        left: 47%;
+
+        width: 20px;
+        height: 20px;
+
+        content: '';
+
+        border-top: 10px solid white;
+        border-right: 10px solid transparent;
+        border-bottom: none;
+        border-left: 10px solid transparent;
+        background: none;
+      }
+    }
+
+    @font-face {
+      font-family: 'icomoon';
+      font-weight: normal;
+      font-style: normal;
+
+      src: url('fonts/icomoon.eot?lc94kd');
+      src: url('fonts/icomoon.eot?#iefixlc94kd') format('embedded-opentype'),
+      url('fonts/icomoon.woff?lc94kd') format('woff'),
+      url('fonts/icomoon.ttf?lc94kd') format('truetype'),
+      url('fonts/icomoon.svg?lc94kd#icomoon') format('svg');
+    }
+
+    [class^='tour-'],
+    [class*=' tour-'] {
+      font-family: 'icomoon';
+      font-weight: normal;
+      font-style: normal;
+      font-variant: normal;
+      line-height: 1;
+
+      text-transform: none;
+
+      speak: none;
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .tour-close-icon:before {
+      content: '\e600';
+    }
+
+    .tour-arrow-left:before {
+      content: '\e601';
+    }
+
+    .tour-arrow-right:before {
+      content: '\e602';
+    }
+
+    .tour-arrow-left-slim:before {
+      content: '\e603';
+    }
+
+    .tour-arrow-right-slim:before {
+      content: '\e604';
+    }
+  }
 }

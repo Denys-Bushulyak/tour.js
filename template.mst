@@ -1,14 +1,16 @@
-<div id='tour'>
+<div id="tour-wrap">
+    <div id='tour'></div>
     <div id='tour-description'>
         <header>
             <h4 id='tour-title'>{{title}}</h4>
+            <span id="tour-close" class="tour-close tour-close-icon"></span>
         </header>
         <section id='tour-content'>{{content}}</section>
         <footer>
             <nav>
-                <a id="tour-prev" href="#">&leftarrow;;</a>
-                <a href="#" class="tour-close">end tour</a>
-                <a href="#" id="tour-next">&rightarrow;</a>
+                <a id="tour-prev" href="#"><span class="tour-arrow-left"></span></a>
+
+                <a id="tour-next" href="#" ><span class="tour-arrow-right"></span></a>
             </nav>
         </footer>
     </div>

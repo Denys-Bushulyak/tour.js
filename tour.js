@@ -6,6 +6,8 @@
 function Tour(options) {
     "use strict";
 
+    var that = this;
+
     if (!options.steps) {
         throw log('error', "Please set 'steps' property to options.");
     }
@@ -16,24 +18,25 @@ function Tour(options) {
     var template = options.template;
     var tooltip = null;
     var padding = options.padding || 10;
+    var scrollSpeed = options.scrollSpeed || 500;
 
     var steps = new Chain(options.steps);
     var ApplicationID = btoa(JSON.stringify(options)).slice(0, options.ID_LENGTH || 10);
 
     //region Constructor
 
-    Object.defineProperty(this, 'ID', {value:ApplicationID, writable:false});
+    Object.defineProperty(this, 'ID', {value: ApplicationID, writable: false});
 
     Mustache.parse(template);
 
     tooltip = $(Mustache.render(template));
 
     tooltip.find('#tour-prev').click(function () {
-        show(steps.prev());
+        that.prev();
     });
 
     tooltip.find('#tour-next').click(function () {
-        show(steps.next());
+        that.next();
     });
 
     tooltip.find('#tour-description').click(function (event) {
@@ -57,7 +60,7 @@ function Tour(options) {
     function log(level, message) {
         if (options.debug && options.debug == true) {
             message = "TourJS: " + message;
-            console[level](message);
+            console[level].call(console, message);
             return message;
         }
 
@@ -99,7 +102,7 @@ function Tour(options) {
 
         var correction = selector.correction || {};
         var size = selector.size || {};
-        var popover = selector.popover || "bottom";
+        var popover_position = (selector.popover && selector.popover.position) || "bottom";
 
         var style = {"width": null, "height": null, "border-width": null};
 
@@ -136,9 +139,22 @@ function Tour(options) {
         correction.bottom = (correction.bottom || 0);
         correction.right = (correction.right || 0);
         correction.left = (correction.left || 0);
+
         size.width = (size.width) ? size.width : target.width;
         size.height = (size.height) ? size.height : target.height;
 
+        //region Scrolling
+        var control_top = parseInt(correction.scroll || target.top + target.height - correction.top - $(window).height() / 2);
+
+        $('html,body').animate({
+            scrollTop: control_top
+        }, scrollSpeed, 'swing', function () {
+            log('info', "Scrolled to " + control_top);
+        });
+
+        //endregion
+
+        //region Border Calculation
         var border_top = target.top - correction.top;
         border_top = border_top >= 0 ? border_top : 0;
 
@@ -153,23 +169,33 @@ function Tour(options) {
 
         var border = border_top + "px " + border_right + "px " + border_bottom + "px " + border_left + "px";
 
+        style["border-width"] = border;
+        //endregion
+
+        //region Popover size calculation
         style.width = size.width + correction.left + correction.right;
         style.height = size.height + correction.top + correction.bottom;
-        style["border-width"] = border;
+        //endregion
 
         tooltip.find('#tour-title').text(selector.title || ""); //Refactor #1
         tooltip.find('#tour-content').text(selector.content || ""); //Refactor #1
 
-        tooltip.css(style);
+        tooltip.find('#tour').css(style);
 
-        var control_top = correction.scroll || target.top + target.height - correction.top - $(window).height() / 2;
+        //Description box (Tooltip) correction
 
-        //Description box correction
+        var tooltip_size = options.tooltip && options.tooltip.size ? options.tooltip.size : null;
+
         $('#tour-description').removeClass();
         $('#tour-description').removeAttr('style');
+        $('#tour-description').addClass(popover_position);
+        $('#tour-description').css({
+            top: style.height + border_top,
+            width: tooltip_size || 'auto',
+            left: border_left + style.width/2 - (tooltip_size ? tooltip_size/2 : $('#tour-description').outerWidth()/2)
+        });
 
-        $('#tour-description').addClass(popover);
-        switch (popover) {
+        /*switch (popover_position) {
             case 'left':
                 log('info', "Not implemented");
                 break;
@@ -181,11 +207,10 @@ function Tour(options) {
                 $('#tour-description').css('top', _top);
                 break;
             case 'bottom':
-                log('info', 'Default behaviour.');
+                log('info', 'Default popover position.');
                 break;
-        }
+        }*/
 
-        window.scrollTo(0, control_top);
     }
 
     function getElement(container, selector) {
