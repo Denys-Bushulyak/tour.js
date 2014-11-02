@@ -132,15 +132,26 @@ function Tour(options) {
         });
 
 
-        correction.top = (correction.top || padding);
-        correction.bottom = (correction.bottom || padding);
-        correction.right = (correction.right || padding);
-        correction.left = (correction.left || padding);
+        correction.top = (correction.top || 0);
+        correction.bottom = (correction.bottom || 0);
+        correction.right = (correction.right || 0);
+        correction.left = (correction.left || 0);
         size.width = (size.width) ? size.width : target.width;
         size.height = (size.height) ? size.height : target.height;
 
-        //TODO Fix. This is wrong: "241px -10px 4487px -10px". Must be:"241px 10px 4487px 10px"
-        var border = (target.top - correction.top) + "px " + (document.body.offsetWidth - target.width - target.left - correction.right) + "px " + (document.body.scrollHeight - target.top - target.height - correction.bottom) + "px " + (target.left - correction.left) + "px";
+        var border_top = target.top - correction.top;
+        border_top = border_top >= 0 ? border_top : 0;
+
+        var border_right = document.body.offsetWidth - target.width - target.left - correction.right;
+        border_right = border_right >= 0 ? border_right : 0;
+
+        var border_bottom = document.body.scrollHeight - target.top - target.height - correction.bottom;
+        border_bottom = border_bottom >= 0 ? border_bottom : 0;
+
+        var border_left = target.left - correction.left;
+        border_left = target.left - correction.left >= 0 ? border_left : 0;
+
+        var border = border_top + "px " + border_right + "px " + border_bottom + "px " + border_left + "px";
 
         style.width = size.width + correction.left + correction.right;
         style.height = size.height + correction.top + correction.bottom;
